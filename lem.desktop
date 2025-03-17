@@ -1,11 +1,11 @@
 [Desktop Entry]
 Name=Lem
 GenericName=TextEditor
-Comment=A editor/IDE well-tuned for Common Lisp
+Comment=A Common Lisp Editor/IDE with high extensibility
 StartupWMClass=Lem SDL2
 Exec=sh -c "GTK_THEME=Adwaita:dark /home/logoraz/.local/share/common-lisp/source/lem/lem"
 Icon=/home/logoraz/.local/share/common-lisp/source/lem/frontends/sdl2/resources/icon.png
 Type=Application
 Terminal=false
 Categories=TextEditor;Utility
-Keywords=texteditor
+Keywords=TextEditor;IDE
