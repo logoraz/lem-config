@@ -3,7 +3,7 @@
 Personal configuration for Lem Common-Lisp IDE/..
 
 <p align="center">
-  <img src="files/assets/lem-icon.png" width="200" />
+  <img src="assets/lem-icon.png" width="200" />
 </p>
 
 
