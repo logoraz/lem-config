@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Exec=sh -c "GTK_THEME=Adwaita:dark /home/logoraz/.local/share/common-lisp/source/lem/lem"
+Icon=/home/logoraz/.local/share/common-lisp/source/lem/frontends/sdl2/resources/icon.png
+Terminal=false
+Categories=System;TextEditor
+Keywords=texteditor
+
+Name=Lem
+GenericName=TextEditor
+Comment=A editor/IDE well-tuned for Common Lisp
