@@ -6,6 +6,9 @@
 (in-package #:lem-config/source/appearance)
 
 
+;; Look into adjust frame to a custom size
+;; lem-core/commands/frame::maximize-frame
+
 (defparameter *regular-font*
   #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Regular.ttf")
 
