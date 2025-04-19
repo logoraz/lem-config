@@ -17,5 +17,5 @@
                (:file "time-stamp")
                (:file "utilities")))
 
-#+nil
+#+(or)
 (register-system-packages "lem-config/extensions/tbd/all" '(#:extension/tbd))

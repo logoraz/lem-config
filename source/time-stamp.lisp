@@ -1,8 +1,8 @@
 ;; brorrowed from https://github.com/vindarel/lem-init
 
 (defpackage #:lem-config/source/time-stamp
-  (:use #:cl 
-        :lem)
+  (:use #:cl
+        #:lem)
   (:export #:*time-stamp-format*
            #:time-stamp))
 (in-package #:lem-config/source/time-stamp)
