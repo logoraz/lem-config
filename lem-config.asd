@@ -1,4 +1,4 @@
-(defsystem #:lem-config
+(defsystem :lem-config
   :author "Erik P Almaraz"
   :license "MIT"
   :version "0.0.1"
@@ -17,5 +17,5 @@
                (:file "time-stamp")
                (:file "utilities")))
 
-#+nil
+#+(or)
 (register-system-packages "lem-config/extensions/tbd/all" '(#:extension/tbd))
