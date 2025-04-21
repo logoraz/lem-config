@@ -13,7 +13,7 @@
 ;; Need to find a way to diversify 'slime' command so the user can provide
 ;; other Common Lisp implementations to start a REPL with...
 
-#+()
+#+(or)
 (progn
   ;; lem/extensions/lisp-mode/implementation.lisp
   (lem-lisp-mode/implementation::list-installed-implementations)

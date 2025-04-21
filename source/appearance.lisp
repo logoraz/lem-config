@@ -41,8 +41,7 @@
 ;; Logs on the terminal output:
 (log:config :info)
 
-#+lem-sdl2
-(progn
+(ignore-errors
   "Configure Dashboard"
   ;; (setf lem-dashboard:*dashboard-enable* nil)
   (define-command lisp-scratch-2 () ()
