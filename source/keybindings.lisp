@@ -10,6 +10,9 @@
   (define-key *global-keymap* "C-/" 'undo)
   (define-key *global-keymap* "C-_" 'redo)
 
+  ;; Hack Alt key doesn't seem to work for lem on Fedora 42...
+  (define-key *global-keymap* "C-;" 'execute-command)
+  
   (define-key *global-keymap* "C-h B" 'describe-bindings)
   (define-key *global-keymap* "C-h k" 'describe-key)
   (define-key *global-keymap* "C-h a" 'apropos-command)
