@@ -10,8 +10,10 @@
   (define-key *global-keymap* "C-/" 'undo)
   (define-key *global-keymap* "C-_" 'redo)
 
-  ;; Hack Alt key doesn't seem to work for lem on Fedora 42...
-  (define-key *global-keymap* "C-;" 'execute-command)
+  ;; Hack Alt "M-" key doesn't seem to work for lem on Fedora 42...
+  ;; see https://github.com/lem-project/lem/pull/1811
+  ;; Added fix to lem/frontends/sdl2/keyboard.lisp
+  (define-key *global-keymap* "C-;" 'execute-command) ;; Alternative keybinding for `M-x'
   
   (define-key *global-keymap* "C-h B" 'describe-bindings)
   (define-key *global-keymap* "C-h k" 'describe-key)
