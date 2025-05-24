@@ -1,4 +1,4 @@
-(defsystem :lem-config
+(defsystem #:lem-config
   :author "Erik P Almaraz"
   :license "MIT"
   :version "0.0.1"
