@@ -1,5 +1,7 @@
 # Main
 /ocicl/*
+/logs/*
+/history/*
 
 # source
 /source/ocicl/*
