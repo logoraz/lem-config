@@ -3,7 +3,6 @@
   :license "MIT"
   :version "0.0.1"
   :description "Lem Configuration."
-  ;; :defsystem-depends-on (:asdf-package-system)
   :class :package-inferred-system
   ;; :depends-on (":lem-config/extensions/tbd/all")
   :depends-on ()
