@@ -1,12 +1,14 @@
-;; brorrowed from https://github.com/vindarel/lem-init
-
-(defpackage #:lem-config/source/time-stamp
-  (:use #:cl
-        #:lem)
-  (:export #:*time-stamp-format*
+(defpackage :lem-config/commands
+  (:use :cl :lem)
+  (:export #:open-init-file
+           #:*time-stamp-format*
            #:time-stamp))
-(in-package #:lem-config/source/time-stamp)
+(in-package :lem-config/commands)
 
+
+(define-command open-init-file () ()
+  (lem:find-file
+   (merge-pathnames "init.lisp" (lem-home))))
 
 (defvar *time-stamp-format*
   ;; Equals Emacs org-mode's default format.
@@ -20,3 +22,4 @@
 (define-command time-stamp () ()
   "Print a timestamp of today, in the form <2042-12-01 Mon>."
   (insert-string (current-point) (format-time-stamp :stream t)))
+

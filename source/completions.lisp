@@ -1,12 +1,37 @@
-;;; ref - @vindarel (https://github.com/vindarel/lem-init)
+(defpackage :lem-config/completions
+  (:use :cl :lem)
+  (:export #+nil fp-up-directory
+           #+nil fp-find-file))
+(in-package :lem-config/completions)
 
-(defpackage #:lem-config/source/completions
-  (:use #:cl
-        #:lem))
-(in-package #:lem-config/source/completions)
+
+;;; File Prompt Configuration
+#+nil
+(progn
+  (define-command fp-up-directory () ()
+    "Delete the last path segment in file prompt."
+    (alexandria:when-let*
+        ((pwindow (lem/prompt-window::current-prompt-window))
+         (wstring (and pwindow (lem/prompt-window::get-input-string))))
+      (lem/prompt-window::replace-prompt-input
+       (ignore-errors
+         (let* ((trimmed (str:trim-right wstring :char-bag '(#\/ )))
+                (endp (1+ (position #\/ trimmed :from-end t :test #'char-equal))))
+           (subseq trimmed 0 endp))))
+      (lem/completion-mode::completion-end)
+      (ignore-errors (lem/prompt-window::prompt-completion))))
+
+  (define-command fp-find-file () ()
+    "find-file with backspace bound to up-directory."
+    (let ((keys (make-keymap)))
+      (define-key keys "Backspace" 'fp-up-directory)
+      (with-special-keymap (keys)
+        (call-command 'find-file (universal-argument-of-this-command)))))
+
+  (define-key *global-keymap* "C-x C-f" 'fp-find-file))
 
 
-;; Choose the position of the completion prompt (new in May, 2024)
+;;; Choose the position of the completion prompt (new in May, 2024)
 (setf lem-core::*default-prompt-gravity* :bottom-display)
 (setf lem/prompt-window::*prompt-completion-window-gravity* :horizontally-above-window)
 (setf lem/prompt-window::*fill-width* t)

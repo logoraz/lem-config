@@ -1,5 +1,4 @@
-(defpackage #:lem-config/source/playground
-  (:use #:cl
-        #:lem)
+(defpackage :lem-config/playground
+  (:use :cl :lem)
   (:export ))
-(in-package #:lem-config/source/playground)
+(in-package :lem-config/playground)

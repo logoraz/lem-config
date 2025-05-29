@@ -1,7 +1,7 @@
-(defpackage #:lem-config/source/keybindings
-  (:use #:cl
-        #:lem))
-(in-package #:lem-config/source/keybindings)
+(defpackage :lem-config/keybindings
+  (:use :cl :lem)
+  (:documentation "General place for altered default keybindings."))
+(in-package :lem-config/keybindings)
 
 
 ;; Make undo & redo what I am used to

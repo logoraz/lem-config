@@ -1,29 +1,21 @@
-(defpackage #:lem-config/source/appearance
-  (:use #:cl
-        #:lem)
-  (:export #+lem-sdl2 #:set-opacity
-           #+lem-sdl2 #:toggle-opacity))
-(in-package #:lem-config/source/appearance)
+(defpackage :lem-config/appearance
+  (:use :cl :lem))
+(in-package :lem-config/appearance)
 
 
 ;; Look into adjust frame to a custom size
-;; lem-core/commands/frame::maximize-frame
+#+nil
+(lem-core/commands/frame::maximize-frame)
 
-(defparameter *regular-font*
-  #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Regular.ttf")
-
-(defparameter *bold-font*
-  #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Bold.ttf")
-
-(defvar *opaquep* nil
-  "Hold boolean state of opacity.")
-
-#+lem-sdl2
+#+nil
 (ignore-errors
   "Enable Transparency."
+  (defvar *opaquep* nil
+    "Hold boolean state of opacity.")
+
   (defun set-opacity (&optional (opacity 0.9))
     "Set frame OPACITY (transparency)."
-    (sdl2-ffi.functions:sdl-set-window-opacity (lem-sdl2/display:display-window 
+    (sdl2-ffi.functions:sdl-set-window-opacity (lem-sdl2/display:display-window
                                                 (lem-sdl2/display:current-display))
                                                (coerce opacity 'single-float)))
   
@@ -36,14 +28,12 @@
   (setf *opaquep* (not *opaquep*)))
 
 ;; Load Theme
-;; (load-theme "decaf") ; default
-
-;; Logs on the terminal output:
-(log:config :info)
+#+(or)
+(load-theme "decaf") ; default
 
 (ignore-errors
-  "Configure Dashboard"
-  ;; (setf lem-dashboard:*dashboard-enable* nil)
+  #+(or)
+  (setf lem-dashboard:*dashboard-enable* nil)
   (define-command lisp-scratch-2 () ()
     "Define lisp-scratch buffer that enables paredit mode straight away!"
     (let ((buffer (primordial-buffer)))
@@ -57,23 +47,5 @@
 
   (define-key lem-dashboard:*dashboard-mode-keymap* "l" 'lisp-scratch-2))
 
-;; Use FiraCode Nerd fonts
-;; FIX: figure out how to get icon sets display in C-x d
-;;#+lem-sdl2
-#+(or)
-(ignore-errors
-  (let ((font-regular *regular-font*)
-        (font-bold *bold-font*))
-    (if (and (uiop:file-exists-p font-regular)
-             (uiop:file-exists-p font-bold))
-        (lem-sdl2/display:change-font (lem-sdl2/display:current-display)
-                                      (lem-sdl2/font:make-font-config
-                                       :latin-normal-file font-regular
-                                       :latin-bold-file font-bold
-                                       :cjk-normal-file font-regular
-                                       :cjk-bold-file font-bold))
-        (message "Fonts not found."))))
-
-;; Hacks
-;; see https://github.com/lem-project/lem/issues/1784 
-;; applied changes to source: /src/ext/popup-window.lisp b/src/ext/popup-window.lisp
+;; Configure Fonts
+(lem-core/commands/font::font-size-set 15)
