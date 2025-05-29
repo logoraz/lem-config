@@ -1,7 +1,9 @@
 # Main
+config.lisp
 /ocicl/*
 /logs/*
 /history/*
+
 
 # source
 /source/ocicl/*
