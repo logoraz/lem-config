@@ -4,18 +4,11 @@
   :version "0.0.1"
   :description "Lem Configuration."
   :class :package-inferred-system
-  ;; :depends-on (":lem-config/extensions/tbd/all")
-  :depends-on ()
-  :serial t
-  :pathname "source"
-  :components ((:file "appearance")
-               (:file "paredit")
-               (:file "completions")
-               (:file "keybindings")
-               (:file "file-prompt")
-               (:file "time-stamp")
-               (:file "utilities")
-               (:file "playground")))
+  :depends-on (#:lem
+               #:lem-config/source/all)
+  :long-description "
 
-#+(or)
-(register-system-packages "lem-config/extensions/tbd/all" '(#:extension/tbd))
+Long descriptions here...
+
+")
+

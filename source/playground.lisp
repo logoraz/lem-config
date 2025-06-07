@@ -1,7 +1,6 @@
 (defpackage #:lem-config/source/playground
   (:use #:cl
-        #:lem
-        #:lem-lisp-mode/package-inferred-system)
+        #:lem)
   (:export ))
 (in-package #:lem-config/source/playground)
 
