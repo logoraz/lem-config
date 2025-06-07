@@ -163,12 +163,14 @@
             (terpri stream)))))))
 
 (defvar *uninterned-defpackage-p* nil ;;logoraz
-  "Allows user to set defpackage scaffolding to use uninterned symbols instead of keywords.")
+  "Allows user to set defpackage scaffolding to use uninterned symbols
+ instead of keywords.")
 
 (defmethod execute-find-file (executor (mode (eql 'lisp-mode)) pathname)
   (let ((buffer (call-next-method)))
     (when (empty-buffer-p buffer)
       (when-let (package-name (infer-package-name (buffer-filename buffer)))
-        (if *uninterned-defpackage-p* (replace-buffer-text-to-defpackage-2 buffer package-name) ;;logoraz
-            (replace-buffer-text-to-defpackage buffer package-name))))
+        (if *uninterned-defpackage-p* 
+            (replace-buffer-text-to-defpackage-2 buffer package-name) ;;logoraz
+          (replace-buffer-text-to-defpackage buffer package-name))))
     buffer))

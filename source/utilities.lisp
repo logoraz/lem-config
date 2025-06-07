@@ -1,10 +1,9 @@
-(defpackage #:lem-config/source/utilities
-  (:use #:cl
-        #:lem
+(defpackage :lem-config/source/utilities
+  (:use :cl :lem
         #+(or)
-        #:lem-lisp-mode/implementation)
+        :lem-lisp-mode/implementation)
   (:export #:open-init-file))
-(in-package #:lem-config/source/utilities)
+(in-package :lem-config/source/utilities)
 
 
 (defvar *lisp-implementations* (list  "sbcl" "ecl" "ccl"))

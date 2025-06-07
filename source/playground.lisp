@@ -1,9 +1,7 @@
-(defpackage #:lem-config/source/playground
-  (:use #:cl
-        #:lem
-        #:lem-lisp-mode/package-inferred-system)
+(defpackage :lem-config/source/playground
+  (:use :cl :lem)
   (:export ))
-(in-package #:lem-config/source/playground)
+(in-package :lem-config/source/playground)
 
 
 ;;; TODO#1: `M-x' key not working
@@ -26,7 +24,7 @@
 ;;          see lem-config/source/ext/package-inferred-system.lisp
 ;;  src  -> lem/extensions/lisp-mode/ext/package-inferred-system.lisp
 
-(setf *uninterned-defpackage-p* t)
+(setf lem-lisp-mode/package-inferred-system:*uninterned-defpackage-p* t)
 
 ;;; TODO#3: Issue Report
 ;;-> window defaults to initial sizing when leaving desktop or when Lem

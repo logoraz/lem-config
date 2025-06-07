@@ -1,7 +1,6 @@
-(defpackage #:lem-config/source/file-prompt
-  (:use #:cl
-        #:lem))
-(in-package #:lem-config/source/file-prompt)
+(defpackage :lem-config/source/file-prompt
+  (:use :cl :lem))
+(in-package :lem-config/source/file-prompt)
 
 
 (progn

@@ -1,21 +1,14 @@
-(defsystem #:lem-config
+(defsystem "lem-config"
   :author "Erik P Almaraz"
   :license "MIT"
   :version "0.0.1"
   :description "Lem Configuration."
   :class :package-inferred-system
-  ;; :depends-on (":lem-config/extensions/tbd/all")
-  :depends-on ()
-  :serial t
-  :pathname "source"
-  :components ((:file "appearance")
-               (:file "paredit")
-               (:file "completions")
-               (:file "keybindings")
-               (:file "file-prompt")
-               (:file "time-stamp")
-               (:file "utilities")
-               (:file "playground")))
+  :depends-on ("lem"
+               "lem-config/source/all")
+  :long-description "
+Personal Lem configuration, scaffolded as it's own system using ASDF's
+package-inferred-system. Includes configurations, 'fixes' as well as code 
+base for my own purposes - perhaps to push upstream if and when I can.
+")
 
-#+(or)
-(register-system-packages "lem-config/extensions/tbd/all" '(#:extension/tbd))
