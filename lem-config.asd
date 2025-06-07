@@ -14,7 +14,8 @@
                (:file "keybindings")
                (:file "file-prompt")
                (:file "time-stamp")
-               (:file "utilities")))
+               (:file "utilities")
+               (:file "playground")))
 
 #+(or)
 (register-system-packages "lem-config/extensions/tbd/all" '(#:extension/tbd))
