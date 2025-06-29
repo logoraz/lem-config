@@ -25,7 +25,6 @@
 
 ;;; Commands
 (define-command open-init-file () ()
-  ;; @sasanidas
   (lem:find-file
    (merge-pathnames "init.lisp" (lem-home))))
 

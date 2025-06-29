@@ -2,6 +2,7 @@
   (:use :cl :lem))
 (in-package :lem-config/source/file-prompt)
 
+;;; TODO - hangs on '.' special character at times.
 
 (progn
   (define-key *global-keymap* "C-x C-f" 'fp-find-file)

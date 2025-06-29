@@ -24,7 +24,7 @@
 ;;          see lem-config/source/ext/package-inferred-system.lisp
 ;;  src  -> lem/extensions/lisp-mode/ext/package-inferred-system.lisp
 
-(setf lem-lisp-mode/package-inferred-system:*uninterned-defpackage-p* t)
+;; (setf lem-lisp-mode/package-inferred-system:*uninterned-defpackage-p* t)
 
 ;;; TODO#3: Issue Report
 ;;-> window defaults to initial sizing when leaving desktop or when Lem

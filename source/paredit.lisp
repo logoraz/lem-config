@@ -1,5 +1,3 @@
-;;; Borrowed from @gavinok (https://github.com/Gavinok/.lem)
-
 (defpackage :lem-config/source/paredit
   (:use :cl :lem))
 (in-package :lem-config/source/paredit)

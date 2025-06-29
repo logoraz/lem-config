@@ -1,5 +1,3 @@
-;;; ref - @vindarel (https://github.com/vindarel/lem-init)
-
 (defpackage :lem-config/source/completions
   (:use :cl :lem))
 (in-package :lem-config/source/completions)

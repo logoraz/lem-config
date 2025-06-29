@@ -1,5 +1,6 @@
 (defpackage :lem-config/source/keybindings
-  (:use :cl :lem))
+  (:use :cl :lem)
+  (:documentation "General place for altered default keybindings."))
 (in-package :lem-config/source/keybindings)
 
 
