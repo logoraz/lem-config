@@ -7,6 +7,9 @@
                  #:lem-config/source/paredit
                  #:lem-config/source/file-prompt
                  #:lem-config/source/time-stamp
+                 #:lem-config/source/commands
+                 #:lem-config/source/lisp-ide
                  #:lem-config/source/utilities
+                 #:lem-config/source/issues
                  #:lem-config/source/playground))
 (in-package :lem-config/source/all)

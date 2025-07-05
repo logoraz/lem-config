@@ -8,12 +8,6 @@
 ;; Look into adjust frame to a custom size
 ;; lem-core/commands/frame::maximize-frame
 
-(defparameter *regular-font*
-  #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Regular.ttf")
-
-(defparameter *bold-font*
-  #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Bold.ttf")
-
 (defvar *opaquep* nil
   "Hold boolean state of opacity.")
 
@@ -57,7 +51,12 @@
   (define-key lem-dashboard:*dashboard-mode-keymap* "l" 'lisp-scratch-2))
 
 ;; Use FiraCode Nerd fonts
-;; FIX: figure out how to get icon sets display in C-x d
+(defparameter *regular-font*
+  #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Regular.ttf")
+
+(defparameter *bold-font*
+  #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Bold.ttf")
+
 ;;#+lem-sdl2
 #+(or)
 (ignore-errors
@@ -72,7 +71,3 @@
                                        :cjk-normal-file font-regular
                                        :cjk-bold-file font-bold))
         (message "Fonts not found."))))
-
-;; Hacks
-;; see https://github.com/lem-project/lem/issues/1784 
-;; applied changes to source: /src/ext/popup-window.lisp b/src/ext/popup-window.lisp

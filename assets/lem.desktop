@@ -1,4 +1,5 @@
 # lem.desktop --> ~/.local/share/applications/lem.desktop
+# Exec=sh -c "GTK_THEME=Adwaita:dark /home/logoraz/.local/bin/lem -i sdl2 %F"
 [Desktop Entry]
 Name=Lem
 GenericName=TextEditor
@@ -6,7 +7,6 @@ Comment=A Common Lisp Editor/IDE with high extensibility
 StartupWMClass=Lem SDL2
 StartupNotify=true
 Exec=lem -i sdl2 %F
-# Exec=sh -c "GTK_THEME=Adwaita:dark /home/logoraz/.local/bin/lem -i sdl2 %F"
 Icon=/home/logoraz/.config/lem/assets/lem.svg
 Type=Application
 Terminal=false
