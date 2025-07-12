@@ -1,4 +1,4 @@
-# lem-config - Lem CL-IDE Configuration 
+# lem-config - Lem IDE Configuration 
 
 <p align="center">
   <img src="assets/lem.svg" width="200" />
@@ -6,8 +6,12 @@
 
 Personal configuration for Lem (Common Lisp Editor/IDE).
 
-This configuration is set up as its own Common Lisp system, following ASDF's
-`package-inferred-system`.
+This configuration is set up as its own Common Lisp system --> `:lem-config`!
+
+A cool feature is the system is loaded in such a way to fail *quietly* and
+and generate `*.log` files: `error.log` lists any issues encounted upon
+loading and `startup.log` lists successfull startup and details of startup (WIP).
+
 
 - `init.lisp`      --> User init loaded by lem, sets up ASDF's registry and loads `:lem-config` system
 - `lem-config.asd` --> System definition for this configuration

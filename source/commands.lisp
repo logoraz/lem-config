@@ -1,6 +1,6 @@
-(defpackage :lem-config/source/commands
+(defpackage :lem-config/commands
   (:use :cl :lem))
-(in-package :lem-config/source/commands)
+(in-package :lem-config/commands)
 
 
 (define-command open-init-file () ()

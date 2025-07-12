@@ -1,8 +1,8 @@
-(defpackage :lem-config/source/time-stamp
+(defpackage :lem-config/time-stamp
   (:use :cl :lem)
   (:export #:*time-stamp-format*
            #:time-stamp))
-(in-package :lem-config/source/time-stamp)
+(in-package :lem-config/time-stamp)
 
 
 (defvar *time-stamp-format*

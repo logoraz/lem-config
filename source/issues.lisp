@@ -1,6 +1,6 @@
-(defpackage :lem-config/source/issues
+(defpackage :lem-config/issues
   (:use :cl))
-(in-package :lem-config/source/issues)
+(in-package :lem-config/issues)
 
 ;;; Fixes directly applied to Lem's source for now (sdl2-compat) issues!
 ;;; TODO#1: `M-x' key not working

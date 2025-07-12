@@ -1,6 +1,6 @@
-(defpackage :lem-config/source/completions
+(defpackage :lem-config/completions
   (:use :cl :lem))
-(in-package :lem-config/source/completions)
+(in-package :lem-config/completions)
 
 
 ;; Choose the position of the completion prompt (new in May, 2024)

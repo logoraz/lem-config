@@ -1,8 +1,8 @@
-(defpackage :lem-config/source/lisp-ide
+(defpackage :lem-config/lisp-ide
   (:use :cl :lem
-        :lem-config/source/utilities
-        :lem-lisp-mode))
-(in-package :lem-config/source/lisp-ide)
+        :lem-lisp-mode
+        :lem-config/utilities))
+(in-package :lem-config/lisp-ide)
 
 
 (define-command slime-select () ()
