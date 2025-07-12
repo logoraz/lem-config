@@ -3,12 +3,24 @@
   :author "Erik P Almaraz <erikalmaraz@fastmail.com>"
   :license "MIT"
   :version (:read-file-form "version.sexp" :at (0 1))
-  :class :package-inferred-system
-  :depends-on ("lem"
-               "lem-config/source/all")
+  :depends-on ("lem")
+  :pathname "source"
+  :serial t
+  :components
+  ((:file "appearance")
+   (:file "utilities")
+   (:file "keybindings")
+   (:file "commands")
+   (:file "completions")
+   (:file "file-prompt")
+   (:file "paredit")
+   (:file "lisp-ide"     :depends-on ("utilities"))
+   (:file "time-stamp")
+   (:file "playground")
+   (:file "issues"))
   :long-description "
-Personal Lem configuration, scaffolded as it's own system using ASDF's
-package-inferred-system. Includes configurations, 'fixes' as well as code 
+Personal Lem configuration, scaffolded as it's own system.
+Includes configurations, 'fixes' as well as code 
 base for my own purposes - perhaps to push upstream if and when I can.
 ")
 

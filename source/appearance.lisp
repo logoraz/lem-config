@@ -1,8 +1,9 @@
-(defpackage :lem-config/source/appearance
+(defpackage :lem-config/appearance
   (:use :cl :lem)
   (:export #+lem-sdl2 :set-opacity
            #+lem-sdl2 :toggle-opacity))
-(in-package :lem-config/source/appearance)
+
+(in-package :lem-config/appearance)
 
 
 ;; Look into adjust frame to a custom size

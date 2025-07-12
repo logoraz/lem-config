@@ -1,6 +1,7 @@
-(defpackage :lem-config/source/paredit
+(defpackage :lem-config/paredit
   (:use :cl :lem))
-(in-package :lem-config/source/paredit)
+
+(in-package :lem-config/paredit)
 
 
 ;; Enable paredit-mode in lisp-mode

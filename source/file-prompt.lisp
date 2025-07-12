@@ -1,6 +1,7 @@
-(defpackage :lem-config/source/file-prompt
+(defpackage :lem-config/file-prompt
   (:use :cl :lem))
-(in-package :lem-config/source/file-prompt)
+
+(in-package :lem-config/file-prompt)
 
 ;;; TODO - hangs on '.' special character at times.
 
