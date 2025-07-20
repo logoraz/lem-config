@@ -16,9 +16,11 @@
   "Enable Transparency."
   (defun set-opacity (&optional (opacity 0.9))
     "Set frame OPACITY (transparency)."
+    #+or
     (sdl2-ffi.functions:sdl-set-window-opacity (lem-sdl2/display:display-window 
                                                 (lem-sdl2/display:current-display))
-                                               (coerce opacity 'single-float)))
+                                               (coerce opacity 'single-float))
+    (uiop:run-program (format nil "transset-df -a ~A" opacity)))
   
   (define-command toggle-opacity () ()
     (set-opacity (if *opaquep* 1 0.9))
