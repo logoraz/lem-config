@@ -60,6 +60,8 @@
   #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Bold.ttf")
 
 ;;#+lem-sdl2
+(lem-core/commands/font::font-size-set 24)
+
 #+(or)
 (ignore-errors
   (let ((font-regular *regular-font*)
