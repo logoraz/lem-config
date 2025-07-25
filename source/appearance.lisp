@@ -7,6 +7,7 @@
 
 ;; Look into adjust frame to a custom size
 ;; lem-core/commands/frame::maximize-frame
+(lem-core/commands/frame::maximize-frame)
 
 (defvar *opaquep* nil
   "Hold boolean state of opacity.")
@@ -16,10 +17,10 @@
   "Enable Transparency."
   (defun set-opacity (&optional (opacity 0.9))
     "Set frame OPACITY (transparency)."
-    #+or
-    (sdl2-ffi.functions:sdl-set-window-opacity (lem-sdl2/display:display-window 
+    (sdl2-ffi.functions:sdl-set-window-opacity (lem-sdl2/display:display-window
                                                 (lem-sdl2/display:current-display))
                                                (coerce opacity 'single-float))
+    #+(or)
     (uiop:run-program (format nil "transset-df -a ~A" opacity)))
   
   (define-command toggle-opacity () ()
@@ -59,8 +60,9 @@
 (defparameter *bold-font*
   #P"/home/logoraz/.local/share/fonts/FiraCodeNerdFontMono-Bold.ttf")
 
-;;#+lem-sdl2
+#+lem-sdl2
 (lem-core/commands/font::font-size-set 24)
+
 
 #+(or)
 (ignore-errors

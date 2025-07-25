@@ -1,7 +1,5 @@
 # Main
 config.lisp
-startup.log
-error.log
 /ocicl/*
 /logs/*
 /history/*

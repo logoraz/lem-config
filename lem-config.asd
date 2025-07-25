@@ -11,7 +11,7 @@
                  (:file "utilities")
                  (:file "keybindings")
                  (:file "commands")
-                 #+nil
+                 #+(or)
                  (:file "completions")
                  (:file "file-prompt")
                  (:file "paredit")
