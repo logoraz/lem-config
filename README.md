@@ -4,20 +4,21 @@
   <img src="assets/lem.svg" width="200" />
 </p>
 
-Personal configuration for Lem (Common Lisp Editor/IDE).
+Modular configuration for Lem (Common Lisp Editor/IDE).
 
-This configuration is set up as its own Common Lisp system --> `:lem-config`!
+This configuration is set up as its own Common Lisp system `:lem-config`!
 
 A cool feature is the system is loaded in such a way to fail *quietly* and
-and generate `*.log` files: `error.log` lists any issues encounted upon
-loading and `startup.log` lists successfull startup and details of startup (WIP).
+and generates `*.log` files in `lem/logs/` (each log entry is timestamped): 
+- `config-error.log` lists any issues encounted upon loading, and
+- `config-startup.log` lists successful startup
 
 
 - `init.lisp`      --> User init loaded by lem, sets up ASDF's registry and loads `:lem-config` system
 - `lem-config.asd` --> System definition for this configuration
 - `source/`        --> Contains souce files for this configuration
+- `assets/`        --> Where images, lem.desktop, and related stuff are held
 - `extensions/`    --> WIP where lem extension systems will be held
-- `assets/`        --> Where images, lem.desktop, and related stuff is held
 
 ## TODOs (Wish List)
 
@@ -25,7 +26,6 @@ loading and `startup.log` lists successfull startup and details of startup (WIP)
   - Fix bug in `fp-up-directory` function, hangs on some special chars.
   - Configure `C-x k` to actually kill the current buffer/file
   - Build an extension analogous to Emacs' erc-mode
-  - TBD
 
 ## References:
   - lem source: https://github.com/lem-project/lem
@@ -36,5 +36,4 @@ loading and `startup.log` lists successfull startup and details of startup (WIP)
     - https://github.com/vindarel/lem-init
   - Paredit configuration inspiration:
     - https://github.com/Gavinok/.lem
-  - TBD
 
