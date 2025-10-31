@@ -1,10 +1,41 @@
 (defpackage :lem-config/lisp-ide
   (:use :cl :lem
         :lem-lisp-mode
-        :lem-config/utilities))
+        :lem-config/utilities)
+  (:export ))
 (in-package :lem-config/lisp-ide)
 
 
+;; Enable paredit-mode in lisp-mode
+(add-hook *find-file-hook*
+          (lambda (buffer)
+            (when (eq (buffer-major-mode buffer) 'lem-lisp-mode:lisp-mode)
+              (change-buffer-mode buffer 'lem-paredit-mode:paredit-mode t))))
+
+;; Enable paredit-mode in scheme-mode
+(add-hook *find-file-hook*
+          (lambda (buffer)
+            (when (eq (buffer-major-mode buffer) 'lem-scheme-mode:scheme-mode)
+              (change-buffer-mode buffer 'lem-paredit-mode:paredit-mode t))))
+
+
+;; Paredit Mappings
+(define-key lem-paredit-mode:*paredit-mode-keymap* "Shift-Right"
+  'lem-paredit-mode:paredit-slurp)
+(define-key lem-paredit-mode:*paredit-mode-keymap* "Shift-Left"
+  'lem-paredit-mode:paredit-barf)
+
+;; FIXME - Seems to be causing an error
+(define-command paredit-quote-wrap () ()
+  (progn
+    (lem-paredit-mode:paredit-insert-doublequote)
+    (lem-paredit-mode:paredit-slurp)
+    (lem:delete-next-char)))
+
+(define-key lem-paredit-mode:*paredit-mode-keymap* "M-\"" 'paredit-quote-wrap)
+
+
+;; WIP See if I can get slime to work with other CL implementations?
 (define-command slime-select () ()
   (slime t))
 
@@ -18,36 +49,3 @@
   "Override internal function to specify my installed CL implementations"
   (loop :for val :in *lisp-implementations*
         :collect (if (exist-program-p val) val)))
-
-#+or
-(set-default-command "ccl")
-  
-
-#+nil
-(defun run-lisp (&key command port directory)
-  (labels ((output-callback (string)
-             (let* ((buffer (make-lisp-process-buffer port))
-                    (point (buffer-point buffer)))
-               (buffer-end point)
-               (insert-escape-sequence-string point string))))
-    (let ((process
-            (lem-process:run-process (uiop:split-string command)
-                                     :directory directory
-                                     :output-callback #'output-callback)))
-      (lem-process:process-send-input process (format nil "(require :asdf)"))
-      process)))
-
-#+nil
-(defun send-micros-create-server (process port)
-  (let ((file (asdf:system-source-file (asdf:find-system :micros))))
-    (lem-process:process-send-input
-     process
-     (format nil "(asdf:load-asd ~S)" file)))
-  ;; Try to quickload micros, but fallback to asdf:load-system if ql not installed
-  (lem-process:process-send-input
-   process
-   "(handler-case (eval (read-from-string \"(ql:quickload :micros)\"))
-      (error (c) (asdf:load-system :micros)))")
-  (lem-process:process-send-input
-   process
-   (format nil "(micros:create-server :port ~D :dont-close t)~%" port)))

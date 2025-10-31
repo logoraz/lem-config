@@ -1,5 +1,5 @@
 (defsystem "lem-config"
-  :description "Lem Configuration."
+  :description "Modular Lem Configuration."
   :author "Erik P Almaraz <erikalmaraz@fastmail.com>"
   :license "MIT"
   :version (:read-file-form "version.sexp" :at (0 1))
@@ -9,19 +9,13 @@
     :serial t
     :components ((:file "appearance")
                  (:file "utilities")
-                 (:file "keybindings")
                  (:file "commands")
-                 #+(or)
+                 (:file "keybindings")
                  (:file "completions")
-                 (:file "file-prompt")
-                 (:file "paredit")
                  (:file "lisp-ide"     :depends-on ("utilities"))
                  (:file "time-stamp")
-                 (:file "playground")
-                 (:file "issues"))))
+                 (:file "playground"))))
   :long-description "
-Personal Lem configuration, scaffolded as it's own system.
-Includes configurations, 'fixes' as well as code 
-base for my own purposes - perhaps to push upstream if and when I can.
+Modular Lem configuration scaffolded as its own system.
 ")
 
