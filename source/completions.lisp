@@ -5,15 +5,6 @@
 
 ;; File Prompt Configuration
 (progn
-  (define-key *global-keymap* "C-x C-f" 'fp-find-file)
-
-  (define-command fp-find-file () ()
-    "find-file with backspace bound to up-directory."
-    (let ((keys (make-keymap)))
-      (define-key keys "Backspace" 'fp-up-directory)
-      (with-special-keymap (keys)
-        (call-command 'find-file (universal-argument-of-this-command)))))
-
   (define-command fp-up-directory () ()
     "Delete the last path segment in file prompt."
     (alexandria:when-let*
@@ -25,7 +16,16 @@
                 (endp (1+ (position #\/ trimmed :from-end t :test #'char-equal))))
            (subseq trimmed 0 endp))))
       (lem/completion-mode::completion-end)
-      (ignore-errors (lem/prompt-window::prompt-completion)))))
+      (ignore-errors (lem/prompt-window::prompt-completion))))
+
+  (define-command fp-find-file () ()
+    "find-file with backspace bound to up-directory."
+    (let ((keys (make-keymap)))
+      (define-key keys "Backspace" 'fp-up-directory)
+      (with-special-keymap (keys)
+        (call-command 'find-file (universal-argument-of-this-command)))))
+
+  (define-key *global-keymap* "C-x C-f" 'fp-find-file))
 
 
 ;; Choose the position of the completion prompt (new in May, 2024)

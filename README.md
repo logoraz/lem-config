@@ -8,18 +8,33 @@ Modular configuration for Lem (Common Lisp Editor/IDE).
 
 This configuration is set up as its own Common Lisp system `:lem-config`!
 
+<<<<<<< HEAD
 A cool feature is this system is loaded in such a way to fail *quietly* and
 and generates `*.log` files in `lem/logs/` (each log entry is timestamped): 
   - `config-error.log` lists any issues encounted upon loading, and
   - `config-startup.log` lists successful startup
+=======
+A cool feature is the system is loaded in such a way to fail *quietly* and
+and generates `*.log` files in `lem/logs/` (each log entry is timestamped): 
+- `config-error.log` lists any issues encounted upon loading, and
+- `config-startup.log` lists successful startup
+>>>>>>> 77090d3 (Update README)
 
 ## System Scaffold
 
+<<<<<<< HEAD
   - `init.lisp`      --> Entry point, sets up ASDF's registry and loads `:lem-config` system
   - `lem-config.asd` --> System definition for this configuration
   - `source/`        --> Contains souce files for this configuration
   - `assets/`        --> Where images, lem.desktop, and related stuff are held
   - `extensions/`    --> WIP where lem extension systems will be held
+=======
+- `init.lisp`      --> User init loaded by lem, sets up ASDF's registry and loads `:lem-config` system
+- `lem-config.asd` --> System definition for this configuration
+- `source/`        --> Contains souce files for this configuration
+- `assets/`        --> Where images, lem.desktop, and related stuff are held
+- `extensions/`    --> WIP where lem extension systems will be held
+>>>>>>> 77090d3 (Update README)
 
 ## TODOs (Wish List)
 
