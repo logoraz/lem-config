@@ -3,7 +3,9 @@
 (in-package :lem-config/appearance)
 
 
-;; Look into adjust frame to a custom size
+;;; =============================================================================
+;;; Frame Parameters/Transparency
+;;; =============================================================================
 #+nil
 (lem-core/commands/frame::maximize-frame)
 
@@ -27,9 +29,40 @@
   (set-opacity)
   (setf *opaquep* (not *opaquep*)))
 
-;; Load Theme
+;;; =============================================================================
+;;; Fonts
+;;; =============================================================================
+;; See lem/src/interface.lisp (or lem/src/commands/font.lisp)
+(lem-core::set-font :name "Fira Code" :size 13)
+
+;;; =============================================================================
+;;; Theme
+;;; =============================================================================
+;; See lem/src/ext/themes.lisp
 #+(or)
-(load-theme "decaf") ; default
+(load-theme "lem-default") ; "decaf"
+
+;; Set custom Cursor color (variant base0d)
+;; https://iamroot.tech/color-picker/default.aspx?color=88a2b7
+;; See lem/src/cursors.lisp, lem/src/attribute.lisp
+;; See lem/src/line-numbers.lisp, lem/src/ext/themes.lisp, 
+;; lem/src/highlight-line.lisp
+
+(defvar *lc/default-cursor-color* "#88a2b7")
+
+(define-attribute lem-core::cursor
+  (:light :background "black") ;; TODO |--> Set color for light cursor (default for now)
+  (:dark :background *lc/default-cursor-color*))
+
+(define-attribute lem/line-numbers:line-numbers-attribute
+  (t :foreground :base02 :background :base00))
+
+(define-attribute lem/line-numbers:active-line-number-attribute
+  (t :foreground :base0d :background (lem-core::highlight-line-color)))
+
+;;; =============================================================================
+;;; Dashboard
+;;; =============================================================================
 
 (ignore-errors
   #+(or)
@@ -47,5 +80,13 @@
 
   (define-key lem-dashboard:*dashboard-mode-keymap* "l" 'lisp-scratch-2))
 
-;; Configure Fonts
-(lem-core/commands/font::font-size-set 15)
+;;; =============================================================================
+;;; Tabs
+;;; =============================================================================
+;;; Fix for tab-bar:
+;; Tab bar does not update after killing buffers
+;; See lem/frontends/server/tabbar.lisp (:lem/tabbar)
+;; See lem/src/commands/file.lisp (:lem-core/commands/file)
+;; See lem/src/buffer/buffer-ext.lisp (:lem-core)
+(add-hook *post-command-hook* 'lem/tabbar::update)
+

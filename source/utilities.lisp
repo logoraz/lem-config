@@ -5,9 +5,16 @@
 (in-package :lem-config/utilities)
 
 
+;;; =============================================================================
+;;; General Utilities
+;;; =============================================================================
 (defun executable-find (program)
   "Simple function to return path to PROGRAM"
   (remove #\newline 
           (uiop:run-program (list "which" program)
                             :output :string)))
 
+
+;;; =============================================================================
+;;; Other
+;;; =============================================================================

@@ -5,11 +5,17 @@
 (in-package :lem-config-init)
 
 
+;; ==============================================================================
+;; ASDF Registry
+;; ==============================================================================
 (asdf:initialize-source-registry
  (list :source-registry
        (list :tree (uiop:xdg-config-home "lem/"))
        :inherit-configuration))
 
+;; ==============================================================================
+;; Loging Facilities
+;; ==============================================================================
 (defun current-time ()
   "Emits formatted time using local-time, with error handling."
   (handler-case
@@ -38,6 +44,9 @@
       (format t "Unexpected error while saving log ~A: ~A~%" pathspec condition)
       nil)))
 
+;; ==============================================================================
+;; Load Lem Configuration System :lem-config
+;; ==============================================================================
 (handler-case
     (progn
       (sb-ext:without-package-locks

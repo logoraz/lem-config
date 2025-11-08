@@ -2,10 +2,23 @@
   (:use :cl :lem
         :lem-lisp-mode
         :lem-config/utilities)
-  (:export ))
+  (:local-nicknames (:ppcre :cl-ppcre))
+  (:export #:line-numbers-attribute
+           #:active-line-number-attribute
+           #:restore-save-buffer))
 (in-package :lem-config/lisp-ide)
 
 
+;;; =============================================================================
+;;; General Editing 
+;;; =============================================================================
+;; Globally Enable Line Numbers:
+(lem/line-numbers::line-numbers-mode)
+
+
+;;; =============================================================================
+;;; Paredit
+;;; =============================================================================
 ;; Enable paredit-mode in lisp-mode
 (add-hook *find-file-hook*
           (lambda (buffer)
@@ -35,6 +48,9 @@
 (define-key lem-paredit-mode:*paredit-mode-keymap* "M-\"" 'paredit-quote-wrap)
 
 
+;;; =============================================================================
+;;; Lisp Interaction (aka SLIME)
+;;; =============================================================================
 ;; WIP See if I can get slime to work with other CL implementations?
 (define-command slime-select () ()
   (slime t))
@@ -49,3 +65,7 @@
   "Override internal function to specify my installed CL implementations"
   (loop :for val :in *lisp-implementations*
         :collect (if (exist-program-p val) val)))
+
+;;; =============================================================================
+;;; Lisp Interaction (aka SLIME)
+;;; =============================================================================

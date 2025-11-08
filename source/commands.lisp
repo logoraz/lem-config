@@ -6,9 +6,36 @@
 (in-package :lem-config/commands)
 
 
+;;; =============================================================================
+;;; Window Layouts
+;;; =============================================================================
+;; src/commands/window.lisp
+(define-command stack-window-layout () ()
+  (lem-core/commands/window:split-active-window-horizontally)
+  (lem-core/commands/window:next-window)
+  (lem-core/commands/window:split-active-window-vertically))
+
+(define-key *global-keymap* "C-c s" 'stack-window-layout)
+
+#+(or)
+(define-command project-window-layout () ()
+  (lem/filer::filer))
+#+(or)
+(define-key *global-keymap* "C-c s" 'stack-window-layout)
+
+
+;;; =============================================================================
+;;; Basics Commands
+;;; =============================================================================
+
 (define-command open-init-file () ()
   (lem:find-file
    (merge-pathnames "init.lisp" (lem-home))))
+
+
+;;; =============================================================================
+;;; Time Stamps
+;;; =============================================================================
 
 (defvar *time-stamp-format*
   ;; Equals Emacs org-mode's default format.

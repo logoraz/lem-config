@@ -4,6 +4,9 @@
 (in-package :lem-config/keybindings)
 
 
+;;; =============================================================================
+;;; General
+;;; =============================================================================
 ;; Make undo & redo what I am used to
 (defun custom-keybindings ()
   "Defining in a function to re-deploy after starting lem/legit after init."
@@ -19,6 +22,11 @@
   (define-key *global-keymap* "C-h k" 'describe-key)
   (define-key *global-keymap* "C-h a" 'apropos-command)
   (define-key *global-keymap* "C-h p" 'lem-lisp-mode:lisp-apropos-package)
-  (define-key *global-keymap* "C-x F" 'lem-core/commands/file:find-file-recursively))
+  (define-key *global-keymap* "C-x F" 'lem-core/commands/file:find-file-recursively)
+
+  ;; tabbar keybindings
+  (define-key *global-keymap* "C-c j" 'lem/tabbar::tabbar-next)
+  (define-key *global-keymap* "C-c k" 'lem/tabbar::tabbar-prev))
 
 (custom-keybindings) ; Enable custom keybindings on initialization.
+

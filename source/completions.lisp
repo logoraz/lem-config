@@ -1,12 +1,15 @@
 (defpackage :lem-config/completions
   (:use :cl :lem)
-  (:export #+nil fp-up-directory
-           #+nil fp-find-file))
+  (:export #:fp-up-directory
+           #:fp-find-file))
 (in-package :lem-config/completions)
 
 
-;;; File Prompt Configuration
-#+nil
+;;; =============================================================================
+;;; File Prompt Customization
+;;; =============================================================================
+
+#+(or)
 (progn
   (define-command fp-up-directory () ()
     "Delete the last path segment in file prompt."
@@ -30,6 +33,9 @@
 
   (define-key *global-keymap* "C-x C-f" 'fp-find-file))
 
+;;; =============================================================================
+;;; Completions
+;;; =============================================================================
 
 ;;; Choose the position of the completion prompt (new in May, 2024)
 (setf lem-core::*default-prompt-gravity* :bottom-display)
