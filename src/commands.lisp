@@ -1,9 +1,11 @@
-(defpackage :lem-config/commands
-  (:use :cl :lem)
+(defpackage #:lem-config/commands
+  (:use #:cl #:lem)
   (:export #:open-init-file
            #:*time-stamp-format*
-           #:time-stamp))
-(in-package :lem-config/commands)
+           #:time-stamp)
+  (:documentation "Custom commands."))
+
+(in-package #:lem-config/commands)
 
 
 ;;; =============================================================================

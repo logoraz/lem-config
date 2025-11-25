@@ -1,8 +1,13 @@
-(defpackage :lem-config-init
-  (:use :cl :lem)
-  (:local-nicknames (:lt :local-time))
+(defpackage #:lem-config-init
+  (:use #:cl #:lem)
+  (:import-from #:uiop
+                #:xdg-config-home)
+  (:import-from #:uiop/filesystem
+                #:ensure-directories-exist)
+  (:local-nicknames (#:lt #:local-time))
   (:documentation "lem-config System Initialization."))
-(in-package :lem-config-init)
+
+(in-package #:lem-config-init)
 
 
 ;; ==============================================================================
@@ -10,7 +15,7 @@
 ;; ==============================================================================
 (asdf:initialize-source-registry
  (list :source-registry
-       (list :tree (uiop:xdg-config-home "lem/"))
+       (list :tree (xdg-config-home "lem/"))
        :inherit-configuration))
 
 ;; ==============================================================================
@@ -28,8 +33,8 @@
 (defun save-log-file (pathspec output)
   "Save log files for initializing lem-config, with improved error handling."
   (handler-case
-      (let ((path (uiop:xdg-config-home pathspec)))
-        (uiop::ensure-directories-exist path)  ; Ensures/creates parents, follows symlinks safely
+      (let ((path (xdg-config-home pathspec)))
+        (ensure-directories-exist path)  ; Ensures/creates parents, follows symlinks safely
         (with-open-file (strm path
                               :direction :output
                               :if-exists :append

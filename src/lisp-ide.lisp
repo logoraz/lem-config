@@ -1,12 +1,14 @@
-(defpackage :lem-config/lisp-ide
-  (:use :cl :lem
-        :lem-lisp-mode
-        :lem-config/utilities)
-  (:local-nicknames (:ppcre :cl-ppcre))
+(defpackage #:lem-config/lisp-ide
+  (:use #:cl #:lem
+        #:lem-lisp-mode
+        #:lem-config/utilities)
+  (:local-nicknames (#:ppcre #:cl-ppcre))
   (:export #:line-numbers-attribute
            #:active-line-number-attribute
-           #:restore-save-buffer))
-(in-package :lem-config/lisp-ide)
+           #:restore-save-buffer)
+  (:documentation "Lisp IDE"))
+
+(in-package #:lem-config/lisp-ide)
 
 
 ;;; =============================================================================

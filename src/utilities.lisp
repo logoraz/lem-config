@@ -1,8 +1,9 @@
-(defpackage :lem-config/utilities
-  (:use :cl :lem)
+(defpackage #:lem-config/utilities
+  (:use #:cl #:lem)
   (:export #:executable-find)
   (:documentation "Basic utilities for lem-config"))
-(in-package :lem-config/utilities)
+
+(in-package #:lem-config/utilities)
 
 
 ;;; =============================================================================

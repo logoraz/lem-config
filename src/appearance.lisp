@@ -1,33 +1,16 @@
-(defpackage :lem-config/appearance
-  (:use :cl :lem))
-(in-package :lem-config/appearance)
+(defpackage #:lem-config/appearance
+  (:use #:cl #:lem)
+  (:documentation "Appearance Configuration"))
+
+(in-package #:lem-config/appearance)
 
 
 ;;; =============================================================================
 ;;; Frame Parameters/Transparency
 ;;; =============================================================================
-#+nil
-(lem-core/commands/frame::maximize-frame)
-
-#+nil
-(ignore-errors
-  "Enable Transparency."
-  (defvar *opaquep* nil
-    "Hold boolean state of opacity.")
-
-  (defun set-opacity (&optional (opacity 0.9))
-    "Set frame OPACITY (transparency)."
-    (sdl2-ffi.functions:sdl-set-window-opacity (lem-sdl2/display:display-window
-                                                (lem-sdl2/display:current-display))
-                                               (coerce opacity 'single-float)))
-  
-  (define-command toggle-opacity () ()
-    (set-opacity (if *opaquep* 1 0.9))
-    (setf *opaquep* (not *opaquep*)))
-
-  ;; Always start out with a transparent frame
-  (set-opacity)
-  (setf *opaquep* (not *opaquep*)))
+;; TBD
+;; Can't enable transparency or frame/window modifications as webview runs
+;; as a separate process and communicates via json-rpc...
 
 ;;; =============================================================================
 ;;; Fonts
@@ -83,10 +66,11 @@
 ;;; =============================================================================
 ;;; Tabs
 ;;; =============================================================================
-;;; Fix for tab-bar:
 ;; Tab bar does not update after killing buffers
-;; See lem/frontends/server/tabbar.lisp (:lem/tabbar)
-;; See lem/src/commands/file.lisp (:lem-core/commands/file)
-;; See lem/src/buffer/buffer-ext.lisp (:lem-core)
+;; see See https://github.com/lem-project/lem/issues/1993
+;; |--> lem/frontends/server/tabbar.lisp (:lem/tabbar)
+;; |--> lem/src/commands/file.lisp (:lem-core/commands/file)
+;; |--> lem/src/buffer/buffer-ext.lisp (:lem-core)
+;; Hack fix
 (add-hook *post-command-hook* 'lem/tabbar::update)
 
