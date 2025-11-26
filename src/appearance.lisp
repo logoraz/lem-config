@@ -46,17 +46,16 @@
 ;;; =============================================================================
 ;;; Dashboard
 ;;; =============================================================================
+(define-command lisp-scratch-2 () ()
+  "Define lisp-scratch buffer that enables paredit mode straight away!"
+  (let ((buffer (primordial-buffer)))
+    (change-buffer-mode buffer 'lem-lisp-mode:lisp-mode)
+    (change-buffer-mode buffer 'lem-paredit-mode:paredit-mode t)
+    (switch-to-buffer buffer)))
 
 (ignore-errors
   #+(or)
   (setf lem-dashboard:*dashboard-enable* nil)
-  (define-command lisp-scratch-2 () ()
-    "Define lisp-scratch buffer that enables paredit mode straight away!"
-    (let ((buffer (primordial-buffer)))
-      (change-buffer-mode buffer 'lem-lisp-mode:lisp-mode)
-      (change-buffer-mode buffer 'lem-paredit-mode:paredit-mode t)
-      (switch-to-buffer buffer)))
-
   (lem-dashboard:set-default-dashboard :project-count 3
                                        :file-count 7
                                        :hide-links t)

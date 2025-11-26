@@ -6,15 +6,35 @@
   :depends-on ("lem")
   :components
   ((:module "src"
-    :components 
-    ((:file "appearance")
+    :serial nil ; Allow for parallel compilation where possible
+    :components
+    (;; Base utilities - no dependencies
      (:file "utilities")
-     (:file "commands")
-     (:file "keybindings")
+     (:file "appearance")
+     
+     ;; Core Functionality - minimal dependencies
      (:file "completions")
-     (:file "lisp-ide"  :depends-on ("utilities"))
+     (:file "commands")
+
+     ;; Dependent modules
+     (:file "keybindings")
+     (:file "lisp-ide"  :depends-on ("utilities" "commands"))
+
+     ;; Optional/Experimental
      (:file "playground"))))
+  
   :long-description "
 Modular Lem configuration scaffolded as its own system.
+
+Components:
+  - appearance: Theme, colors, UI customization
+  - utilities: Helper functions and common utilities  
+  - commands: Custom Lem commands
+  - keybindings: Key binding configuration
+  - completions: Completion system configuration
+  - lisp-ide: Common Lisp IDE enhancements
+  - playground: Experimental features
+
+This system can be loaded independently or as part of Lem's initialization.
 ")
 

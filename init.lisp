@@ -9,7 +9,6 @@
 
 (in-package #:lem-config-init)
 
-
 ;; ==============================================================================
 ;; ASDF Registry
 ;; ==============================================================================
@@ -19,7 +18,7 @@
        :inherit-configuration))
 
 ;; ==============================================================================
-;; Loging Facilities
+;; Logging Facilities (:lem-config)
 ;; ==============================================================================
 (defun current-time ()
   "Emits formatted time using local-time, with error handling."
@@ -50,13 +49,15 @@
       nil)))
 
 ;; ==============================================================================
-;; Load Lem Configuration System :lem-config
+;; Load :lem-config
 ;; ==============================================================================
 (handler-case
     (progn
       (sb-ext:without-package-locks
         (asdf:load-system :lem-config))
-      (save-log-file "lem/logs/config-startup.log" "Success"))
+      (save-log-file "lem/logs/config-startup.log" "Success")
+      (message "lem-config loaded successfully"))
   (error (condition)
-    (save-log-file "lem/logs/config-error.log" condition)))
-
+    ;; Log the error but DON'T re-signal it - let Lem start anyway
+    (save-log-file "lem/logs/config-error.log" condition)
+    (message "Warning: lem-config failed to load - continuing with defaults")))
