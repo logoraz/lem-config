@@ -1,6 +1,14 @@
 (defpackage #:lem-config/commands
   (:use #:cl #:lem)
-  (:export #:open-init-file
+  (:import-from #:lem-core/commands/window
+                #:split-active-window-horizontally
+                #:split-active-window-vertically
+                #:next-window)
+  (:import-from #:local-time
+                #:format-timestring
+                #:now)
+  (:export #:stack-window-layout
+           #:open-init-file
            #:*time-stamp-format*
            #:time-stamp)
   (:documentation "Custom commands."))
@@ -13,11 +21,10 @@
 ;;; =============================================================================
 ;; src/commands/window.lisp
 (define-command stack-window-layout () ()
-  (lem-core/commands/window:split-active-window-horizontally)
-  (lem-core/commands/window:next-window)
-  (lem-core/commands/window:split-active-window-vertically))
+  (split-active-window-horizontally)
+  (next-window)
+  (split-active-window-vertically))
 
-(define-key *global-keymap* "C-c s" 'stack-window-layout)
 
 #+(or)
 (define-command project-window-layout () ()
@@ -31,7 +38,7 @@
 ;;; =============================================================================
 
 (define-command open-init-file () ()
-  (lem:find-file
+  (find-file
    (merge-pathnames "init.lisp" (lem-home))))
 
 
@@ -45,8 +52,8 @@
   "Time-stamp format.
   By default, prints year, month, day, and short english day: \"<2023-07-05 Wed>\"")
 
-(defun format-time-stamp (&key (day (local-time:now)) (stream nil))
-  (local-time:format-timestring stream day :format *time-stamp-format*))
+(defun format-time-stamp (&key (day (now)) (stream nil))
+  (format-timestring stream day :format *time-stamp-format*))
 
 (define-command time-stamp () ()
   "Print a timestamp of today, in the form <2042-12-01 Mon>."

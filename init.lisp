@@ -1,10 +1,17 @@
 (defpackage #:lem-config-init
   (:use #:cl #:lem)
+  (:import-from #:asdf
+                #:initialize-source-registry
+                #:load-system)
   (:import-from #:uiop
                 #:xdg-config-home)
   (:import-from #:uiop/filesystem
                 #:ensure-directories-exist)
-  (:local-nicknames (#:lt #:local-time))
+  (:import-from #:sb-ext
+                #:without-package-locks)
+  (:import-from #:local-time
+                #:now
+                #:format-timestring)
   (:documentation "lem-config System Initialization."))
 
 (in-package #:lem-config-init)
@@ -12,7 +19,7 @@
 ;; ==============================================================================
 ;; ASDF Registry
 ;; ==============================================================================
-(asdf:initialize-source-registry
+(initialize-source-registry
  (list :source-registry
        (list :tree (xdg-config-home "lem/"))
        :inherit-configuration))
@@ -23,9 +30,9 @@
 (defun current-time ()
   "Emits formatted time using local-time, with error handling."
   (handler-case
-      (lt:format-timestring nil (lt:now)
-                            :format '(:year "-" :month "-" :day "-T"
-                                      :hour ":" :min ":" :sec))
+      (format-timestring nil (now)
+                         :format '(:year "-" :month "-" :day "-T"
+                                   :hour ":" :min ":" :sec))
     (error (condition)
       (format nil "Error getting current time: ~A" condition))))
 
@@ -53,8 +60,8 @@
 ;; ==============================================================================
 (handler-case
     (progn
-      (sb-ext:without-package-locks
-        (asdf:load-system :lem-config))
+      (without-package-locks
+        (load-system :lem-config))
       (save-log-file "lem/logs/config-startup.log" "Success")
       (message "lem-config loaded successfully"))
   (error (condition)

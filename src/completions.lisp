@@ -1,8 +1,7 @@
 (defpackage #:lem-config/completions
   (:use #:cl #:lem)
-  (:local-nicknames (#:alx #:alexandria))
-  (:export #:fp-up-directory
-           #:fp-find-file)
+  (:import-from #:lem-core)
+  (:import-from #:lem/prompt-window)
   (:documentation "Completions framework."))
 
 (in-package #:lem-config/completions)

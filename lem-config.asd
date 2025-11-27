@@ -14,11 +14,11 @@
      
      ;; Core Functionality - minimal dependencies
      (:file "completions")
-     (:file "commands")
+     (:file "commands" :depends-on ("utilities"))
 
      ;; Dependent modules
-     (:file "keybindings")
-     (:file "lisp-ide"  :depends-on ("utilities" "commands"))
+     (:file "keybindings" :depends-on ("commands"))
+     (:file "lisp-ide"  :depends-on ("commands"))
 
      ;; Optional/Experimental
      (:file "playground"))))

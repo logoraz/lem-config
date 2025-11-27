@@ -1,7 +1,17 @@
 (defpackage #:lem-config/lisp-ide
-  (:use #:cl #:lem
-        #:lem-lisp-mode
-        #:lem-config/utilities)
+  (:use #:cl #:lem)
+  (:import-from #:lem-lisp-mode
+                #:lisp-mode)
+  (:import-from #:lem-scheme-mode
+                #:scheme-mode)
+  (:import-from #:lem-paredit-mode
+                #:paredit-mode
+                #:paredit-slurp
+                #:paredit-barf
+                #:paredit-insert-doublequote
+                #:*paredit-mode-keymap*)
+  (:import-from #:lem-config/utilities
+                #:executable-find)
   (:local-nicknames (#:ppcre #:cl-ppcre))
   (:export #:line-numbers-attribute
            #:active-line-number-attribute
@@ -9,7 +19,6 @@
   (:documentation "Lisp IDE"))
 
 (in-package #:lem-config/lisp-ide)
-
 
 ;;; =============================================================================
 ;;; General Editing 
@@ -24,30 +33,29 @@
 ;; Enable paredit-mode in lisp-mode
 (add-hook *find-file-hook*
           (lambda (buffer)
-            (when (eq (buffer-major-mode buffer) 'lem-lisp-mode:lisp-mode)
-              (change-buffer-mode buffer 'lem-paredit-mode:paredit-mode t))))
+            (when (eq (buffer-major-mode buffer) 'lisp-mode)
+              (change-buffer-mode buffer 'paredit-mode t))))
 
 ;; Enable paredit-mode in scheme-mode
 (add-hook *find-file-hook*
           (lambda (buffer)
-            (when (eq (buffer-major-mode buffer) 'lem-scheme-mode:scheme-mode)
-              (change-buffer-mode buffer 'lem-paredit-mode:paredit-mode t))))
+            (when (eq (buffer-major-mode buffer) 'scheme-mode)
+              (change-buffer-mode buffer 'paredit-mode t))))
 
 
 ;; Paredit Mappings
-(define-key lem-paredit-mode:*paredit-mode-keymap* "Shift-Right"
-  'lem-paredit-mode:paredit-slurp)
-(define-key lem-paredit-mode:*paredit-mode-keymap* "Shift-Left"
-  'lem-paredit-mode:paredit-barf)
+(define-key *paredit-mode-keymap* "Shift-Right"
+  'paredit-slurp)
+(define-key *paredit-mode-keymap* "Shift-Left"
+  'paredit-barf)
 
-;; FIXME - Seems to be causing an error
 (define-command paredit-quote-wrap () ()
   (progn
-    (lem-paredit-mode:paredit-insert-doublequote)
-    (lem-paredit-mode:paredit-slurp)
-    (lem:delete-next-char)))
+    (paredit-insert-doublequote)
+    (paredit-slurp)
+    (delete-next-char)))
 
-(define-key lem-paredit-mode:*paredit-mode-keymap* "M-\"" 'paredit-quote-wrap)
+(define-key *paredit-mode-keymap* "M-\"" 'paredit-quote-wrap)
 
 
 ;;; =============================================================================
@@ -66,7 +74,7 @@
 (defun lem-lisp-mode/implementation::list-installed-implementations ()
   "Override internal function to specify my installed CL implementations"
   (loop :for val :in *lisp-implementations*
-        :collect (if (exist-program-p val) val)))
+        :collect (if (executable-find val) val)))
 
 ;;; =============================================================================
 ;;; Lisp Interaction (aka SLIME)

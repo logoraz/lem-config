@@ -1,5 +1,11 @@
 (defpackage #:lem-config/keybindings
   (:use #:cl #:lem)
+  (:import-from #:lem-core/commands/file
+                #:find-file-recursively)
+  (:import-from #:lem-lisp-mode
+                #:lisp-apropos-package)
+  (:import-from #:lem-config/commands
+                #:stack-window-layout)
   (:documentation "General place for altered default keybindings."))
 
 (in-package #:lem-config/keybindings)
@@ -22,12 +28,15 @@
   (define-key *global-keymap* "C-h B" 'describe-bindings)
   (define-key *global-keymap* "C-h k" 'describe-key)
   (define-key *global-keymap* "C-h a" 'apropos-command)
-  (define-key *global-keymap* "C-h p" 'lem-lisp-mode:lisp-apropos-package)
-  (define-key *global-keymap* "C-x F" 'lem-core/commands/file:find-file-recursively)
+  (define-key *global-keymap* "C-h p" 'lisp-apropos-package)
+  (define-key *global-keymap* "C-x F" 'find-file-recursively)
 
   ;; tabbar keybindings
   (define-key *global-keymap* "C-c j" 'lem/tabbar::tabbar-next)
-  (define-key *global-keymap* "C-c k" 'lem/tabbar::tabbar-prev))
+  (define-key *global-keymap* "C-c k" 'lem/tabbar::tabbar-prev)
+
+  ;; My own commands
+  (define-key *global-keymap* "C-c s" 'stack-window-layout))
 
 (custom-keybindings) ; Enable custom keybindings on initialization.
 

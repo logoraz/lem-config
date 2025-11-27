@@ -1,5 +1,19 @@
 (defpackage #:lem-config/appearance
   (:use #:cl #:lem)
+  (:import-from #:lem-core
+                #:set-font
+                #:cursor
+                #:highlight-line-color)
+  (:import-from #:lem/line-numbers
+                #:line-numbers-attribute
+                #:active-line-number-attribute)
+  (:import-from #:lem-dashboard
+                #:set-default-dashboard
+                #:*dashboard-mode-keymap*)
+  (:import-from #:lem-lisp-mode
+                #:lisp-mode)
+  (:import-from #:lem-paredit-mode
+                #:paredit-mode)
   (:documentation "Appearance Configuration"))
 
 (in-package #:lem-config/appearance)
@@ -12,11 +26,12 @@
 ;; Can't enable transparency or frame/window modifications as webview runs
 ;; as a separate process and communicates via json-rpc...
 
+
 ;;; =============================================================================
 ;;; Fonts
 ;;; =============================================================================
 ;; See lem/src/interface.lisp (or lem/src/commands/font.lisp)
-(lem-core::set-font :name "Fira Code" :size 13)
+(set-font :name "Fira Code" :size 13)
 
 ;;; =============================================================================
 ;;; Theme
@@ -33,15 +48,15 @@
 
 (defvar *lc/default-cursor-color* "#88a2b7")
 
-(define-attribute lem-core::cursor
+(define-attribute cursor
   (:light :background "black") ;; TODO |--> Set color for light cursor (default for now)
   (:dark :background *lc/default-cursor-color*))
 
-(define-attribute lem/line-numbers:line-numbers-attribute
+(define-attribute line-numbers-attribute
   (t :foreground :base02 :background :base00))
 
-(define-attribute lem/line-numbers:active-line-number-attribute
-  (t :foreground :base0d :background (lem-core::highlight-line-color)))
+(define-attribute active-line-number-attribute
+  (t :foreground :base0d :background (highlight-line-color)))
 
 ;;; =============================================================================
 ;;; Dashboard
@@ -49,18 +64,18 @@
 (define-command lisp-scratch-2 () ()
   "Define lisp-scratch buffer that enables paredit mode straight away!"
   (let ((buffer (primordial-buffer)))
-    (change-buffer-mode buffer 'lem-lisp-mode:lisp-mode)
-    (change-buffer-mode buffer 'lem-paredit-mode:paredit-mode t)
+    (change-buffer-mode buffer 'lisp-mode)
+    (change-buffer-mode buffer 'paredit-mode t)
     (switch-to-buffer buffer)))
 
 (ignore-errors
   #+(or)
   (setf lem-dashboard:*dashboard-enable* nil)
-  (lem-dashboard:set-default-dashboard :project-count 3
-                                       :file-count 7
-                                       :hide-links t)
+  (set-default-dashboard :project-count 3
+                         :file-count 7
+                         :hide-links t)
 
-  (define-key lem-dashboard:*dashboard-mode-keymap* "l" 'lisp-scratch-2))
+  (define-key *dashboard-mode-keymap* "l" 'lisp-scratch-2))
 
 ;;; =============================================================================
 ;;; Tabs
