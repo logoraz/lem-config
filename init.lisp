@@ -16,17 +16,19 @@
 
 (in-package #:lem-config-init)
 
-;; ==============================================================================
-;; ASDF Registry
-;; ==============================================================================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; ASDF Registry
+
 (initialize-source-registry
  (list :source-registry
        (list :tree (xdg-config-home "lem/"))
        :inherit-configuration))
 
-;; ==============================================================================
-;; Logging Facilities (:lem-config)
-;; ==============================================================================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Logging Facilities (:nxconfig)
+
 (defun current-time ()
   "Emits formatted time using local-time, with error handling."
   (handler-case
@@ -55,9 +57,10 @@
       (format t "Unexpected error while saving log ~A: ~A~%" pathspec condition)
       nil)))
 
-;; ==============================================================================
-;; Load :lem-config
-;; ==============================================================================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; Load System
+
 (handler-case
     (progn
       (without-package-locks
