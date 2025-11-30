@@ -15,11 +15,21 @@ and generates `*.log` files in `lem/logs/` (each log entry is timestamped):
 
 ## System Scaffold
 
-- `init.lisp`      --> User init loaded by lem, sets up ASDF's registry and loads `:lem-config` system
+- `init.lisp`      --> User init, sets up ASDF's registry and loads `:lem-config`
 - `lem-config.asd` --> System definition for this configuration
 - `src/`           --> Contains source files for this configuration
 - `assets/`        --> Where images, lem.desktop, and related stuff are held
 - `lib/`           --> WIP where lem extension systems will be held
+
+## Build Lem & Setup
+I pull Lem's source locally to `~/Work/builds/lem` and likewise
+install this repo to `~/Work/lem-config`. After you have both of these there,
+you can deploy this config and install lem locally via
+
+```bash
+  $ cd ~/Work/lem-config
+  $ sbcl --load setup.lisp
+```
 
 ## TODOs (Wish List)
 

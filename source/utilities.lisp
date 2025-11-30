@@ -9,9 +9,10 @@
 
 (in-package #:lem-config/utilities)
 
-;;; =============================================================================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;; General Utilities
-;;; =============================================================================
+
 (defun executable-find (program)
   "Find executable PROGRAM in PATH, return full path or NIL if not found (SBCL only)"
   (let* ((path-env (u:getenv "PATH"))
@@ -28,9 +29,10 @@
                      (error () nil)))
           (return-from executable-find (namestring candidate)))))))
 
-;;; =============================================================================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;; Other
-;;; =============================================================================
+
 (defun cleanup-debug-logs ()
   "Remove any existing debug.log files"
   (handler-case

@@ -6,10 +6,11 @@
 
 (in-package #:lem-config/completions)
 
-;;; =============================================================================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;; Completions
-;;; =============================================================================
 ;;; Choose the position of the completion prompt (new in May, 2024)
+
 (setf lem-core::*default-prompt-gravity* :bottom-display)
 (setf lem/prompt-window::*prompt-completion-window-gravity* :horizontally-above-window)
 (setf lem/prompt-window::*fill-width* t)
